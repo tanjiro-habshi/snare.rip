@@ -46,6 +46,7 @@
                         </nav>
                     </div>
                 </header>
+
                 <div id="__saos-0.5641673125011946__" style="">
                     <div style="animation: fade-in-bottom 0.25s cubic-bezier(0.35, 0.5, 0.65, 0.95) both; ">
                         <section class="space-y-6 pb-4 pt-4 md:py-16 lg:py-12" data-svelte-h="svelte-116scjl">
@@ -115,20 +116,90 @@
                                             <h3 class="font-bold">/messages</h3>
                                             <p class="text-sm text-muted-foreground">
                                                 Fetches messages from a user in a specific channel, allowing you to
-                                                retrieve their message history.</p>
+                                                retrieve their message history.
                                             </p>
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                         </section>
                     </div>
 
                 </div>
+
+                <!-- Buy Access Section (improved spacing) -->
+                <!-- Buy Access Section (styled like feature cards) -->
+                <main class="min-h-[80vh] pb-24">
+                    <section class="container py-16 md:py-20 lg:py-24 mb-20" id="pricing">
+                        <div class="mx-auto max-w-4xl flex flex-col items-center text-center space-y-10">
+
+                            <!-- Title -->
+                            <div class="space-y-4">
+                                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight">
+                                    Buy Access to Snare
+                                </h2>
+                                <div class="w-16 h-1 bg-primary mx-auto rounded-full"></div>
+                            </div>
+
+                            <!-- Description -->
+                            <p class="max-w-2xl text-lg md:text-xl leading-relaxed text-muted-foreground px-4">
+                                Unlock the full potential of Snare with a one-time payment or a monthly subscription.
+                            </p>
+
+                            <!-- Pricing cards -->
+                            <div class="w-full pt-4">
+                                <div
+                                    class="mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 justify-center items-stretch max-w-3xl">
+
+                                    <!-- Lifetime Plan -->
+                                    <div
+                                        class="rounded-lg border bg-card text-card-foreground shadow-sm p-6 flex flex-col justify-between space-y-6">
+                                        <div class="space-y-2 text-center">
+                                            <h3 class="text-2xl font-bold">Lifetime Access</h3>
+                                            <p class="text-muted-foreground text-sm">
+                                                Pay once, enjoy Snare forever.
+                                            </p>
+                                        </div>
+                                        <div class="space-y-2 text-center">
+                                            <p class="text-4xl font-bold text-primary">$20</p>
+                                            <p class="text-sm text-muted-foreground">One-time payment</p>
+                                        </div>
+                                        <a href="#buy-lifetime"
+                                            class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/80 h-10 px-5 py-5 mt-auto">
+                                            Buy Lifetime
+                                        </a>
+                                    </div>
+
+                                    <!-- Monthly Plan -->
+                                    <div
+                                        class="rounded-lg border bg-card text-card-foreground shadow-sm p-6 flex flex-col justify-between space-y-6">
+                                        <div class="space-y-2 text-center">
+                                            <h3 class="text-2xl font-bold">Monthly Access</h3>
+                                            <p class="text-muted-foreground text-sm">
+                                                Flexible subscription — cancel anytime.
+                                            </p>
+                                        </div>
+                                        <div class="space-y-1 text-center">
+                                            <p class="text-4xl font-bold text-primary">$5</p>
+                                            <p class="text-sm text-muted-foreground">Per month</p>
+                                        </div>
+                                        <a href="#buy-monthly"
+                                            class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 mt-auto">
+                                            Buy Monthly
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </main>
+
+
             </main>
         </div>
     </div>
+
     <script type="96318efbcd220447831ce116-text/javascript">
         {
             __sveltekit_114ewhk = {
@@ -152,7 +223,7 @@
             });
         }
     </script>
-    </div>
+
     <script src="js/UlFZaGvHUFYj.js" data-cf-settings="96318efbcd220447831ce116-|49" defer=""></script>
 
 </body>

@@ -22,16 +22,32 @@
             const dropdown = document.getElementById('dropdown-' + type);
             const isCurrentlyOpen = dropdown.classList.contains('show');
             const pricingSection = document.getElementById('pricing');
+            const cardContainer = cardElement.closest('.card-container');
+            const featuresGrid = document.querySelector('.mx-auto.grid');
 
             closeAllDropdowns();
 
             if (!isCurrentlyOpen) {
                 openDropdown(type);
-                // Add smooth transition and push down pricing section
+                
+                // Add smooth transition
                 pricingSection.style.transition = 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), margin-top 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)';
-                pricingSection.style.marginTop = '200px'; // Adjust based on dropdown height
+                cardContainer.style.transition = 'margin-bottom 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                
+                // Check if the opened card is in the top row or bottom row
+                const cardIndex = Array.from(featuresGrid.children).indexOf(cardContainer);
+                if (cardIndex < 2) { 
+                    // Top row cards (index 0 or 1) - push down bottom row cards
+                    cardContainer.style.marginBottom = '200px';
+                    pricingSection.style.marginTop = '0px';
+                } else {
+                    // Bottom row cards (index 2 or 3) - push down pricing section
+                    cardContainer.style.marginBottom = '0px';
+                    pricingSection.style.marginTop = '200px';
+                }
             } else {
-                // Reset pricing section position
+                // Reset positions
+                cardContainer.style.marginBottom = '0px';
                 pricingSection.style.marginTop = '0px';
             }
         }
@@ -78,16 +94,23 @@
         function closeAllDropdowns() {
             const dropdowns = document.querySelectorAll('.dropdown-content');
             const pricingSection = document.getElementById('pricing');
+            const cardContainers = document.querySelectorAll('.card-container');
             
             dropdowns.forEach(function (dropdown) {
                 dropdown.classList.remove('show');
             });
             
-            // Reset pricing section position with smooth transition
+            // Reset all positions with smooth transition
             if (pricingSection) {
                 pricingSection.style.transition = 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), margin-top 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)';
                 pricingSection.style.marginTop = '0px';
             }
+            
+            // Reset all card container margins
+            cardContainers.forEach(function(container) {
+                container.style.transition = 'margin-bottom 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                container.style.marginBottom = '0px';
+            });
         }
 
         function handleKeyDown(event, type, cardElement) {
@@ -119,6 +142,30 @@
                         title: "Date Range Filtering",
                         command: "/messages 123456789012345678",
                         description: "Get messages from a user with discord user id."
+                    }
+                ]
+            },
+            dsa: {
+                title: "/dsa Command",
+                icon: '',
+                description: "",
+                usage: [
+                    {
+                        title: "Server Analysis",
+                        command: "/dsa [server/user_id]",
+                        description: "Analyze Discord's ban database from User or Server ID."
+                    }
+                ]
+            },
+            placeholder: {
+                title: "/email Command",
+                icon: '',
+                description: "",
+                usage: [
+                    {
+                        title: "Email Lookup",
+                        command: "/email user@example.com",
+                        description: "Search for information and accounts associated with the provided email address."
                     }
                 ]
             }
@@ -208,11 +255,22 @@
 
         .card-container {
             position: relative;
+            transition: margin-bottom 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         /* Enhanced spacing for better visual separation */
         #pricing {
             transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), margin-top 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* Placeholder card styling */
+        .placeholder-card {
+            opacity: 0.8;
+            background: linear-gradient(135deg, hsl(var(--card)) 0%, hsl(var(--muted)) 100%);
+        }
+
+        .placeholder-card:hover {
+            opacity: 1;
         }
     </style>
 </head>
@@ -330,6 +388,60 @@
                                         </div>
                                     </div>
                                     <div id="dropdown-messages" class="dropdown-content"></div>
+                                </div>
+
+                                <div class="card-container">
+                                    <div class="rounded-lg border bg-card text-card-foreground shadow-sm relative col-span-1 overflow-visible p-2 card-hover"
+                                        aria-labelledby="card" aria-describedby="card" role="button" tabindex="0"
+                                        onclick="toggleDropdown('dsa', this)"
+                                        onkeydown="handleKeyDown(event, 'dsa', this)">
+                                        <div class="flex h-[150px] flex-col justify-between rounded-md p-6">
+                                            <div class="flex flex-row items-center -space-x-4">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="icon analytics-icon feature-icon" aria-hidden="true"
+                                                    style="color: #f59e0b;">
+                                                    <path d="M3 3v18h18" />
+                                                    <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3" />
+                                                </svg>
+                                            </div>
+                                            <div class="flex flex-col">
+                                                <h3 class="font-bold">/dsa</h3>
+                                                <p class="text-sm text-muted-foreground">
+                                                    Analyze Discord's ban database from Digital Services Act transparency reports.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="dropdown-dsa" class="dropdown-content"></div>
+                                </div>
+
+                                <div class="card-container">
+                                    <div class="rounded-lg border bg-card text-card-foreground shadow-sm relative col-span-1 overflow-visible p-2 card-hover"
+                                        aria-labelledby="card" aria-describedby="card" role="button" tabindex="0"
+                                        onclick="toggleDropdown('placeholder', this)"
+                                        onkeydown="handleKeyDown(event, 'placeholder', this)">
+                                        <div class="flex h-[150px] flex-col justify-between rounded-md p-6">
+                                            <div class="flex flex-row items-center -space-x-4">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="icon email-icon feature-icon" aria-hidden="true"
+                                                    style="color: #8b5cf6;">
+                                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                                    <polyline points="22,6 12,13 2,6" />
+                                                </svg>
+                                            </div>
+                                            <div class="flex flex-col">
+                                                <h3 class="font-bold">/email</h3>
+                                                <p class="text-sm text-muted-foreground">
+                                                    Search and lookup information associated with email addresses for investigative purposes.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="dropdown-placeholder" class="dropdown-content"></div>
                                 </div>
                             </div>
                         </section>

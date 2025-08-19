@@ -4,7 +4,7 @@
 <head>
     <title>Snare - Discord Bot</title>
     <meta charset="utf-8">
-    <meta name="viewSnare" content="initial-scale=0.7, minimal-ui, viewSnare-fit=cover, width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#000001">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Snare.rip">
@@ -29,14 +29,14 @@
 
             if (!isCurrentlyOpen) {
                 openDropdown(type);
-                
+
                 // Add smooth transition
                 pricingSection.style.transition = 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), margin-top 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)';
                 cardContainer.style.transition = 'margin-bottom 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)';
-                
+
                 // Check if the opened card is in the top row or bottom row
                 const cardIndex = Array.from(featuresGrid.children).indexOf(cardContainer);
-                if (cardIndex < 2) { 
+                if (cardIndex < 2) {
                     // Top row cards (index 0 or 1) - push down bottom row cards
                     cardContainer.style.marginBottom = '200px';
                     pricingSection.style.marginTop = '0px';
@@ -95,19 +95,19 @@
             const dropdowns = document.querySelectorAll('.dropdown-content');
             const pricingSection = document.getElementById('pricing');
             const cardContainers = document.querySelectorAll('.card-container');
-            
+
             dropdowns.forEach(function (dropdown) {
                 dropdown.classList.remove('show');
             });
-            
+
             // Reset all positions with smooth transition
             if (pricingSection) {
                 pricingSection.style.transition = 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), margin-top 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)';
                 pricingSection.style.marginTop = '0px';
             }
-            
+
             // Reset all card container margins
-            cardContainers.forEach(function(container) {
+            cardContainers.forEach(function (container) {
                 container.style.transition = 'margin-bottom 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)';
                 container.style.marginBottom = '0px';
             });
@@ -409,7 +409,8 @@
                                             <div class="flex flex-col">
                                                 <h3 class="font-bold">/dsa</h3>
                                                 <p class="text-sm text-muted-foreground">
-                                                    Analyze Discord's ban database from Digital Services Act transparency reports.
+                                                    Analyze Discord's ban database from Digital Services Act
+                                                    transparency reports.
                                                 </p>
                                             </div>
                                         </div>
@@ -429,14 +430,16 @@
                                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                                                     class="icon email-icon feature-icon" aria-hidden="true"
                                                     style="color: #8b5cf6;">
-                                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                                    <path
+                                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                                                     <polyline points="22,6 12,13 2,6" />
                                                 </svg>
                                             </div>
                                             <div class="flex flex-col">
                                                 <h3 class="font-bold">/email</h3>
                                                 <p class="text-sm text-muted-foreground">
-                                                    Search and lookup information associated with email addresses for investigative purposes.
+                                                    Search and lookup information associated with email addresses for
+                                                    investigative purposes.
                                                 </p>
                                             </div>
                                         </div>
